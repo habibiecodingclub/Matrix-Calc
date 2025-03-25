@@ -1,0 +1,132 @@
+/* Start - font settings */
+.med{
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+.sembold{
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 600;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+.bold{
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 700;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+.reg {
+  font-family: "Instrument Sans", sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+  font-variation-settings:
+    "wdth" 100;
+}
+
+/* End - font settings */
+
+/* Start - Styling Matriks, Input */
+.matriksA {
+  margin: auto;
+  width: 50dvw;
+  /* background-color: red; */
+}
+.matriksA > .input{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr) ;
+  grid-template-rows:repeat(3, 1fr) ;
+  grid-column-gap:3px ;
+  grid-row-gap:3px ;
+}
+.matriksA > .kepala{
+  text-align: center;
+  /* background-color: red; */
+}
+.input> .inputan{
+  border: 1px solid black;
+  text-align:center;
+  /* background-color: red; */
+}
+
+.kolom, .baris{
+  display:flex;
+  width: 100%;
+  justify-content: space-between;
+}
+.kolom p, .baris p{
+  margin-left: 2rem;
+}
+
+.tambahkurang{
+  display: flex;
+  flex-direction: row;
+}
+.tambahkurang button{
+  width: 3rem;
+}
+.setting-matriks{
+  display:flex;
+  justify-content: space-evenly;
+  width: 100%;
+  flex-direction: row;
+} 
+.dtrmn{
+  width: 100%;
+  font-size: 1rem;
+}
+/* End - Styling Matriks, Input */
+
+/* Start - Styling hasil */
+.hasil{
+  text-align: center;
+}
+/* End - Styling hasil */
+
+/* Start - Mematikan Styling default dari inputan */
+/* Untuk browser berbasis WebKit seperti Chrome, Safari, Edge */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type="number"]:hover,
+input[type="number"]:active,
+input[type="number"]:focus {
+    outline: none; /* Hilangkan outline saat aktif */
+    border-color: white; /* /* Tetapkan warna border default */
+    box-shadow: none; /* Hilangkan box shadow */
+}
+input[type="number"]{
+    width: auto; /* Lebar menyesuaikan konten */
+    min-width: 50px; /* Lebar minimum */
+    max-width: 60px; /* Lebar maksimum */
+    box-sizing: border-box; /* Pastikan padding dan border termasuk dalam lebar */
+    padding: 5px; /* Padding untuk kenyamanan */
+    font-size: 16px; /* Ukuran font */
+    text-align: center; /* Agar angka terpusat */
+    border: 1px solid white; /* Border default */
+    transition: none; /* Hilangkan transisi */ 
+}
+
+input[type="number"] {
+    -moz-appearance: textfield; /* Untuk Firefox */
+}
+
+
+/* End - Mematikan Styling default dari inputan */
+
+/* Start - Styling Utama */
+@media (max-width: 768px){
+   .setting-matriks{
+    flex-direction: column;
+   } 
+}
