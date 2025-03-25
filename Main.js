@@ -1,96 +1,55 @@
-// Fungsionalitas Matriks
-function tampilkanMatriks(matriks){
-    for(let i = 0; i < matriks.length; i++){
-        console.log(matriks[i]);
-    }
-}
+function buatMatrix(input) {
+    const matrix = [];
+    let row = [];
 
-// Pertambahan Matriks
-function tambahMatriks(matriks1, matriks2){
-    let hasil = [];
+    for (let i = 0; i < input.length; i++) {
+        row.push(parseFloat(input[i].value) || 0);
 
-    for(let i = 0; i < matriks1.length; i++){
-        hasil[i] = [];
-        for(let j = 0; j < matriks1[i].length; j++){
-            hasil[i][j] = matriks1[i][j] + matriks2[i][j]
-
+        if ((i + 1) % 3 === 0) {
+            matrix.push(row);
+            row = [];
         }
     }
-    return hasil;
-}
-// Pengurangan Matriks
-function kurangMatriks (matriks1, matriks2){
-    let hasil = [];
-
-    for(let i = 0; i < matriks1.length; i++){
-        hasil[i] = [];
-        for(let j = 0; j < matriks1[i].length; j++){
-            hasil[i][j] = matriks1[i][j] - matriks2[i][j];
-        }
-    }
-    return hasil;
+    console.log('Matrix yg dibuat: ',matrix);
+    return  matrix;
 }
 
 
-// Perkalian Matriks
-function kaliMatriks(matriks1, matriks2){
-    let hasil = [];
-
-    for (let i = 0; i < matriks1.length; i++){
-        hasil[i] = [];
-        for (let j = 0; j < matriks2[0].length; j++){
-            hasil[i][j] = 0;
-            for (let k = 0; k < matriks1[0].length; k++){
-                hasil[i][j] += matriks1[i][k] * matriks2[k][j];
-            }
+// Pertambahan
+function pertambahanMatriks(matrixA, matrixB) {
+    if (matrixA.length !== matrixB.length || 
+        matrixA[0].length !== matrixB[0].length) {
+            console.error('Ukuran matrix tidak sama');
+            return null;
         }
+
+    const hasil = [];
+    for (let i = 0; i < matrixA.length; i++) {
+        const rowResult = [];
+        for (let j = 0; j < matrixA[i].length; j++) {
+            rowResult.push(matrixA[i][j] + matrixB[i][j]);
+        }
+        hasil.push(rowResult);
     }
-    return hasil;
-}
-
-// Determinan Matriks
-function determinanMatriks(matriks){
-    let hasil = 0;
-    if (matriks.length == 2){
-        return matriks[0][0] * matriks[1][1] - matriks[0][1] * matriks[1][0];
-        } else {
-            for (let i = 0; i < matriks.length; i++){
-                let subMatriks = [];
-                for (let j = 1; j < matriks.length; j++){
-                    subMatriks[j-1] = [];
-                    for (let k = 0; k < matriks.length; k++){
-                        if (k != i){
-                            subMatriks[j-1].push(matriks[j][k]);
-                        }
-                    }
-                }
-            }
-        }
+    console.log('Hasil Pertambahan: ',hasil);
     return hasil;
 }
 
 
 
+document.addEventListener('DOMContentLoaded', () => {
+    const matrixAinput = document.querySelectorAll('.matriksA:nth-child(2) .input .inputan input');
+    const matrixBinput = document.querySelectorAll('.matriksA:nth-child(3) .input .inputan input');
+    const tombolTambah = document.getElementById('tambahBtn');
 
-let A = [
-    [1, 2],
-    [2, 1]];
 
-let B = [
-    [4, 2],
-    [2, 3]];
+    tombolTambah.addEventListener('click', () => {
+        const matrixA = buatMatrix(matrixAinput);
+        const matrixB = buatMatrix(matrixBinput);
 
-tampilkanMatriks(A);
-tampilkanMatriks(B);
-console.log("---------Tambah--------")
-let tambah = tambahMatriks(A, B);
-tampilkanMatriks(tambah);
-console.log("---------Kurang--------")
-let kurang = kurangMatriks(A, B);
-tampilkanMatriks(kurang);
-console.log("---------Kali--------")
-let kali = kaliMatriks(A, B);
-tampilkanMatriks(kali);
-console.log("---------Det--------")
-let det = determinanMatriks(A);
-console.log(det)
+        const hasilPertambahan = pertambahanMatriks(matrixA, matrixB);
+        if (hasilPertambahan) {
+        console.log('Hasil akhir di console:', hasilPertambahan);
+        }
+    });
+});
