@@ -35,15 +35,59 @@ function pertambahanMatriks(matrixA, matrixB) {
     return hasil;
 }
 
+// Pengurangan
+function penguranganMatriks(matrixA, matrixB) {
+    if (matrixA.length !== matrixB.length ||
+        matrixA[0].length !== matrixB[0].length) {
+            console.error('Ukuran matrix tidak sama');
+            return null;
+        }
+
+    const hasil = [];
+    for (let i = 0; i < matrixA.length; i++) {
+        const rowResult = [];
+        for (let j = 0; j < matrixA[i].length; j++) {
+            rowResult.push(matrixA[i][j] - matrixB[i][j]);
+        }
+        hasil.push(rowResult);
+    }
+    console.log('Hasil Pengurangan: ',hasil);
+    return hasil;
+}
+
+// Perkalian
+function perkalianMatriks(matrixA, matrixB) {
+    if (matrixA.length !== matrixB.length ||
+        matrixA[0].length !== matrixB[0].length) {
+            console.error('Ukuran matrix tidak sesuai untuk perkalian');
+            return null;
+    }
+
+    const hasil = [];
+    for (let i = 0; i < matrixA.length; i++) {
+        const rowResult = [];
+        for (let j = 0; j < matrixB[0].length; j++) {
+            let sum = 0;
+            for (let k = 0; k < matrixA[i].length; k++) {
+                sum += matrixA[i][k] * matrixB[k][j];
+            }
+            rowResult.push(sum);
+        }
+        hasil.push(rowResult);
+    }
+    console.log('Hasil Perkalian: ',hasil);
+    return hasil;
+}
 
 
 document.addEventListener('DOMContentLoaded', () => {
     const matrixAinput = document.querySelectorAll('.matriks:nth-child(2) .input .inputan input');
     const matrixBinput = document.querySelectorAll('.matriks:nth-child(3) .input .inputan input');
     const tombolTambah = document.getElementById('tambahBtn');
+    const tombolKurang = document.getElementById('kurangBtn');
+    const tombolkali = document.getElementById('kaliBtn');
 
 
-    const tombolkali = document.getElementById('kaliBtn')
 
     const x1 = document.getElementById('hasil-x1')
     const x2 = document.getElementById('hasil-x2')
@@ -66,15 +110,49 @@ document.addEventListener('DOMContentLoaded', () => {
         // console.log('Hasil akhir di console:', hasilPertambahan);
         // }
         x1.value = hasilPertambahan[0][0]
-        x2.value = hasilPertambahan[0][1]
-        x3.value = hasilPertambahan[0][2]
-        y1.value = hasilPertambahan[1][0]
+        x2.value = hasilPertambahan[1][0]
+        x3.value = hasilPertambahan[2][0]
+        y1.value = hasilPertambahan[0][1]
         y2.value = hasilPertambahan[1][1]
-        y3.value = hasilPertambahan[1][2]
-        z1.value = hasilPertambahan[2][0]
-        z2.value = hasilPertambahan[2][1]
+        y3.value = hasilPertambahan[2][1]
+        z1.value = hasilPertambahan[0][2]
+        z2.value = hasilPertambahan[1][2]
         z3.value = hasilPertambahan[2][2]
     });
+
+    tombolKurang.addEventListener('click', () => {
+        const matrixA = buatMatrix(matrixAinput);
+        const matrixB = buatMatrix(matrixBinput);
+
+        const hasilPengurangan = penguranganMatriks(matrixA, matrixB);
+
+        x1.value = hasilPengurangan[0][0]
+        x2.value = hasilPengurangan[1][0]
+        x3.value = hasilPengurangan[2][0]
+        y1.value = hasilPengurangan[0][1]
+        y2.value = hasilPengurangan[1][1]
+        y3.value = hasilPengurangan[2][1]
+        z1.value = hasilPengurangan[0][2]
+        z2.value = hasilPengurangan[1][2]
+        z3.value = hasilPengurangan[2][2]
+    });
+    
+    tombolkali.addEventListener('click', () => {
+        const matrixA = buatMatrix(matrixAinput);
+        const matrixB = buatMatrix(matrixBinput);
+        const hasilKali = perkalianMatriks(matrixA, matrixB);
+        
+        x1.value = hasilKali[0][0]
+        x2.value = hasilKali[1][0]
+        x3.value = hasilKali[2][0]
+        y1.value = hasilKali[0][1]
+        y2.value = hasilKali[1][1]
+        y3.value = hasilKali[2][1]
+        z1.value = hasilKali[0][2]
+        z2.value = hasilKali[1][2]
+        z3.value = hasilKali[2][2]
+
+    })
 });
 
 
