@@ -35,19 +35,19 @@
 /* End - font settings */
 
 /* Start - Styling Matriks, Input */
-.matriksA {
+.matriks{
   margin: auto;
   width: 50dvw;
   /* background-color: red; */
 }
-.matriksA > .input{
+.matriks > .input{
   display:grid;
   grid-template-columns:repeat(3, 1fr) ;
   grid-template-rows:repeat(3, 1fr) ;
   grid-column-gap:3px ;
   grid-row-gap:3px ;
 }
-.matriksA > .kepala{
+.matriks > .kepala{
   text-align: center;
   /* background-color: red; */
 }
